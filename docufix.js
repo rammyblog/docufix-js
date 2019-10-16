@@ -18,7 +18,11 @@ $('#compare').on('click', function (e) {
         let resultB = secondStringArray.filter( newWord => newWord === word );
         if (resultB != 0 || resultA != 0 ){
         console.log( `${word} appeared in First document ${resultA.length} time and it appeared in Second document ${resultB.length} times`);
-       
+      
+      
+        $('#result').append(
+            
+            `${word} appeared in First document ${resultA.length} time and it appeared in Second document ${resultB.length} times`)
     
     }
     })
