@@ -62,7 +62,7 @@ function getCookie(name) {
     
     
           $.ajax({
-            url: "http://docufix.pythonanywhere.com/upload/",
+            url: "https://docufix.pythonanywhere.com/upload/",
             type: "POST",
             data: formData,
             beforeSend: function(xhr, settings) {
