@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>Docufix | Compare Text</title>
 
     <style>
@@ -152,27 +153,26 @@ body{
         
     </div>
     
-    <form enctype="multipart/form-data">
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <!-- {% csrf_token %} -->
         <label for="upload1">First File</label>
         <input
             id="upload1"
             type="file"
-            accept="text/pdf"
-            name="files[]"
-            size="30"
+            name="file1"
+ 
         />
-    </form>
 
 
-    <form enctype="multipart/form-data">
         <label for="upload2">Second File</label>
         <input
             id="upload2"
             type="file"
-            accept="text/pdf"
-            name="files[]"
-            size="30"
+            name="file2"
+   
         />
+        <input id="uploadBtn" type="submit" value="submit">
+
     </form>
     <section id="text-compare">
         <div id="text-1">
@@ -204,59 +204,12 @@ body{
             <span class="compare-btn-txt">COMPARE</span>
         </button>
     </div>
+    <div id="result"></div>
+
     
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script>
-        function handleFileSelect(evt) {
-            var files = evt.target.files; // FileList object
-            // use the 1st file from the list
-            // f = files[0];
-            for (const f of  files) {
-                
-            console.log(f);
-            
-            var reader = new FileReader();
-            // Closure to capture the file information.
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    jQuery("#input1").val(e.target.result);
-                };
-            })(f);
-            // Read in the image file as a data URL.
-            reader.readAsText(f);
-        }}
-
-
-
-        function handleFileSelect2(evt) {
-            var files = evt.target.files; // FileList object
-            // use the 1st file from the list
-            // f = files[0];
-            for (const f of  files) {
-                
-            console.log(f);
-            
-            var reader = new FileReader();
-            // Closure to capture the file information.
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    jQuery("#input2").val(e.target.result);
-                };
-            })(f);
-            // Read in the image file as a data URL.
-            reader.readAsText(f);
-        }}
-
-
-
-        document
-            .getElementById("upload1")
-            .addEventListener("change", handleFileSelect, false);
-        document
-            .getElementById("upload2")
-            .addEventListener("change", handleFileSelect2, false);
-    </script>
 
     <script src="docufix.js"></script>
 
